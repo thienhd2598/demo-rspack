@@ -1,0 +1,3 @@
+export const LIMIT_RESERVE_TICKET_ITEMS = 1000;
+export const PAGE_RESERVE_TICKET_ITEMS = 1;
+export const LIMIT_ADD_VARIANT = 100;

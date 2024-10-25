@@ -1,0 +1,102 @@
+.cropper-container {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.width-fit-content {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.bg-blur {
+  background-color: rgba(86, 86, 86, 0.6);
+}
+
+.cus-border {
+  border: 1px solid #c9c9c9;
+}
+
+.editorClassName {
+  border: 1px solid #f1f1f1;
+  min-height: 200px;
+  max-height: 400px;
+  border-radius: 2px;
+  padding: 12px;
+}
+
+@media (min-width: 992px) {
+  .header {
+    background-color: #ffffff;
+  }
+  .header-fixed .header {
+    box-shadow: 0px 0px 40px 0px rgba(82, 63, 105, 0.1);
+  }
+  .header .header-menu .menu-nav > .menu-item > .menu-link {
+    border-radius: 4px;
+  }
+  .header .header-menu .menu-nav > .menu-item > .menu-link .menu-text {
+    color: #6c7293;
+    font-weight: 500;
+  }
+  .header .header-menu .menu-nav > .menu-item > .menu-link .menu-arrow {
+    color: #6c7293;
+  }
+  .header .header-menu .menu-nav > .menu-item > .menu-link .menu-icon {
+    color: #6c7293;
+  }
+  .header .header-menu .menu-nav > .menu-item > .menu-link svg g [fill] {
+    transition: fill 0.3s ease;
+    fill: #6c7293;
+  }
+  .header .header-menu .menu-nav > .menu-item > .menu-link svg:hover g [fill] {
+    transition: fill 0.3s ease;
+  }
+  .header .header-menu .menu-nav > .menu-item.menu-item-here > .menu-link, .header .header-menu .menu-nav > .menu-item.menu-item-active > .menu-link {
+    background-color: rgba(77, 89, 149, 0.06);
+  }
+  .header .header-menu .menu-nav > .menu-item.menu-item-here > .menu-link .menu-text, .header .header-menu .menu-nav > .menu-item.menu-item-active > .menu-link .menu-text {
+    color: #ff5629;
+  }
+  .header .header-menu .menu-nav > .menu-item.menu-item-here > .menu-link .menu-arrow, .header .header-menu .menu-nav > .menu-item.menu-item-active > .menu-link .menu-arrow {
+    color: #ff5629;
+  }
+  .header .header-menu .menu-nav > .menu-item.menu-item-here > .menu-link .menu-icon, .header .header-menu .menu-nav > .menu-item.menu-item-active > .menu-link .menu-icon {
+    color: #ff5629;
+  }
+  .header .header-menu .menu-nav > .menu-item.menu-item-here > .menu-link svg g [fill], .header .header-menu .menu-nav > .menu-item.menu-item-active > .menu-link svg g [fill] {
+    transition: fill 0.3s ease;
+    fill: #ff5629;
+  }
+  .header .header-menu .menu-nav > .menu-item.menu-item-here > .menu-link svg:hover g [fill], .header .header-menu .menu-nav > .menu-item.menu-item-active > .menu-link svg:hover g [fill] {
+    transition: fill 0.3s ease;
+  }
+  .header .header-menu .menu-nav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link, .header .header-menu .menu-nav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link {
+    background-color: rgba(77, 89, 149, 0.06);
+  }
+  .header .header-menu .menu-nav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-text, .header .header-menu .menu-nav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-text {
+    color: #ff5629;
+  }
+  .header .header-menu .menu-nav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-hor-arrow, .header .header-menu .menu-nav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-hor-arrow {
+    color: #ff5629;
+  }
+  .header .header-menu .menu-nav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-icon, .header .header-menu .menu-nav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-icon {
+    color: #ff5629;
+  }
+  .header .header-menu .menu-nav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link svg g [fill], .header .header-menu .menu-nav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link svg g [fill] {
+    transition: fill 0.3s ease;
+    fill: #ff5629;
+  }
+  .header .header-menu .menu-nav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link svg:hover g [fill], .header .header-menu .menu-nav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link svg:hover g [fill] {
+    transition: fill 0.3s ease;
+  }
+}
+@media (max-width: 991.98px) {
+  .topbar {
+    background-color: #ffffff;
+    box-shadow: none;
+  }
+  .topbar-mobile-on .topbar {
+    box-shadow: 0px 0px 40px 0px rgba(82, 63, 105, 0.2);
+    border-top: 1px solid #eff0f6;
+  }
+}/*# sourceMappingURL=light.css.map */

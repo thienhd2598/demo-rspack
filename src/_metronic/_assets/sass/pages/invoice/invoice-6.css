@@ -1,0 +1,35 @@
+.cropper-container {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.width-fit-content {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.bg-blur {
+  background-color: rgba(86, 86, 86, 0.6);
+}
+
+.cus-border {
+  border: 1px solid #c9c9c9;
+}
+
+.editorClassName {
+  border: 1px solid #f1f1f1;
+  min-height: 200px;
+  max-height: 400px;
+  border-radius: 2px;
+  padding: 12px;
+}
+
+.invoice-6 .invoice-6-container {
+  background-color: #1c0152;
+}
+.invoice-6 .title-color {
+  color: #b5a6d2;
+}
+.invoice-6 .note-color {
+  color: #847cb8;
+}/*# sourceMappingURL=invoice-6.css.map */

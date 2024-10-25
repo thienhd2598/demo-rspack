@@ -1,0 +1,21 @@
+{
+  "presets": [
+    "@babel/preset-typescript",
+    "@babel/preset-react",
+    "@babel/preset-env"
+  ],
+  "plugins": [
+    [
+      "formatjs",
+      {
+        "idInterpolationPattern": "[sha512:contenthash:base64:6]",
+        "extractFromFormatMessageCall": true,
+        "ast": true
+      }
+    ],
+    [
+      "@babel/transform-runtime"
+    ],
+    "@emotion"
+  ]
+}

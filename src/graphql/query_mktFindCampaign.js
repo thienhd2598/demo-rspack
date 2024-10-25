@@ -1,0 +1,166 @@
+import gql from "graphql-tag";
+
+export default gql`
+query mktFindCampaign($id: Int!, $context: String) {
+  mktFindCampaign(id: $id) {
+    campaignScheduleFrame {
+        apply_before_second
+        apply_type
+        campaign_id
+        connector_channel_code
+        created_at
+        error_msg
+        frame_id
+        id
+        last_verified_at
+        option
+        schedule_frame_id
+        store_id
+        updated_at
+        verified_result
+    }
+    campaignAddOnDeal {
+      campaign_id
+      campaign_template_id
+      connector_channel_code
+      created_at
+      gift_num
+      id
+      purchase_limit
+      purchase_min_spend
+      sme_id
+      store_id
+      updated_at
+    }
+    campaignSubItem {
+      campaign_id
+      campaign_template_id
+      connector_channel_code
+      created_at
+      discount_percent
+      id
+      is_enable
+      last_action
+      promotion_price
+      purchase_limit
+      ref_product_id
+      ref_variant_id
+      sc_product_id
+      sc_variant_id
+      sc_variant_sku
+      sme_id
+      sme_variant_id
+      sme_variant_sku
+      store_id
+      updated_at
+      sync_status
+      sync_error_message
+    }
+    campaignVoucher {
+      campaign_template_id
+      collect_time
+      created_at
+      discount_amount
+      display_channel_list
+      error_message
+      error_type
+      id
+      limit_per_user
+      max_discount_price
+      min_order_price
+      updated_at
+      usage_quantity
+      used_quantity
+    }
+    text_status
+    color_status
+    on_create_schedule_frame
+    on_create_reserve_ticket
+    id
+    code
+    end_time
+    created_at
+    connector_channel_code
+    discount_type
+    name
+    ref_id
+    sme_id
+    source
+    start_time
+    status
+    store_id
+    sync_error_message
+    sync_status
+    synced_at
+    type
+    item_type
+    updated_at
+    campaignItem {
+      campaign {
+        discount_type
+      }
+      mktItemDiscount {
+        campaign_id
+        connector_channel_code
+        created_at
+        discount_percent
+        id
+        mkt_item_id
+        promotion_price
+        promotion_stock
+        purchase_limit
+        ref_promotion_price
+        ref_promotion_stock
+        sme_id
+        store_id
+        updated_at
+      }
+      mktItemFlashSale {
+        campaign_id
+        connector_channel_code
+        created_at
+        discount_percent
+        id
+        mkt_item_id
+        promotion_price
+        promotion_stock
+        purchase_limit
+        ref_promotion_price
+        ref_promotion_stock
+        sme_id
+        store_id
+        updated_at
+      }
+      ref_product_id
+      ref_variant_id
+      campaign_id
+      connector_channel_code
+      created_at
+      id
+      sc_product_id
+      sc_variant_id
+      sc_variant_sku
+      is_enable
+      sme_id
+      sme_variant_id
+      sme_variant_sku
+      sync_status
+      sync_error_message
+    }
+  }
+  sc_stores(context: $context) {
+    connector_channel_code
+    enable_multi_warehouse
+    name
+    id
+    status
+  }
+  op_connector_channels {
+    code
+    id
+    logo_asset_id
+    logo_asset_url
+    name
+  }
+}
+`

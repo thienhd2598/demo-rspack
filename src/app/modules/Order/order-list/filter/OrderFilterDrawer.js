@@ -1,0 +1,384 @@
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
+import queryString from 'querystring';
+import { useHistory, useLocation } from "react-router-dom";
+import Select from "react-select";
+import { useQuery } from "@apollo/client";
+import _ from 'lodash';
+import { Checkbox } from "../../../../../_metronic/_partials/controls";
+import query_coGetShippingCarrierFromListPackage from "../../../../../graphql/query_coGetShippingCarrierFromListPackage";
+import query_coGetPaymentMethodFromListPackage from "../../../../../graphql/query_coGetPaymentMethodFromListPackage";
+import { useIntl } from 'react-intl'
+import { OPTIONS_ORDER } from "../../OrderUIHelpers";
+
+const OrderFilterDrawer = ({ 
+    isOpenDrawer, OPTIONS_PROCESSING_DEADLINE, 
+    onToggleDrawer, OPTIONS_TYPE_PARCEL, OPTIONS_SESSION_PICKUP,
+     OPTIONS_PRINT_STATUS, OPTIONS_MAP_SME, whereCondition }) => {
+    const location = useLocation();
+    const history = useHistory();
+    const params = queryString.parse(location.search.slice(1, 100000));
+    const [filterParams, setFilterParams] = useState({});
+    const { formatMessage } = useIntl()
+    useEffect(() => {
+        if (isOpenDrawer) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+        }
+
+        return () => {
+            document.body.classList.remove('no-scroll');
+        };
+    }, [isOpenDrawer]);
+
+    const { data: coGetShippingCarrier, refetch: refetchCoGetShippingCarrier } = useQuery(query_coGetShippingCarrierFromListPackage, {
+        variables: {
+            search: {
+                ...(params?.list_source == 'manual' ? {list_source: ['manual']} : {}),
+                range_time: whereCondition.range_time,
+                connector_channel_code: whereCondition.connector_channel_code,
+                list_store: whereCondition.list_store,
+                is_connected: 1
+            }
+        },
+        fetchPolicy: 'cache-and-network'
+    });
+
+    const { data: coGetPaymentMethod, refetch: refetchCoGetPaymentMethod } = useQuery(query_coGetPaymentMethodFromListPackage, {
+        variables: {
+            search: {
+                ...(params?.list_source == 'manual' ? {list_source: ['manual']} : {}),
+                range_time: whereCondition.range_time,
+                connector_channel_code: whereCondition.connector_channel_code,
+                list_store: whereCondition.list_store,
+                is_connected: 1
+            }
+        },
+        fetchPolicy: 'cache-and-network'
+    });
+
+    useEffect(() => {
+        refetchCoGetShippingCarrier()
+        refetchCoGetPaymentMethod()
+    }, [filterParams])
+
+    useMemo(() => {
+        setFilterParams({
+            stores: params?.stores || undefined,
+            shipping_unit: params?.shipping_unit || undefined,
+            payments: params?.payments || undefined,
+            in_session_pickup: params?.in_session_pickup || undefined,
+            type_parcel: params?.type_parcel || undefined,
+            print_status: params?.print_status || undefined,
+            filter_map_sme: params?.filter_map_sme || undefined,
+            list_source: params?.list_source || undefined,
+            deadline_status: params?.deadline_status || undefined,
+            after_sale_type: params?.after_sale_type || undefined,
+            order_type: !!params?.order_type || params?.order_type == 0 ? params?.order_type : undefined
+        })
+    }, [
+        params?.stores, params?.shipping_unit, params?.in_session_pickup,
+        params?.payments, isOpenDrawer, params?.type_parcel,
+        params?.print_status, params?.filter_map_sme, params?.list_source, params?.deadline_status, params?.order_type
+    ]);
+
+    const [currentShippingUnit, optionsShippingUnit] = useMemo(() => {
+        let parseParamsShippingUnit = filterParams?.shipping_unit?.split('$')
+        let optionsShippingUnit = coGetShippingCarrier?.coGetShippingCarrierFromListPackage?.data?.map(_ship => {
+            return { label: _ship.shipping_carrier, value: _ship.shipping_carrier }
+        })
+        let currentShippingUnit = optionsShippingUnit?.filter(
+            _option => parseParamsShippingUnit?.some(param => param == _option?.value)
+        );
+        return [currentShippingUnit, optionsShippingUnit]
+    }, [coGetShippingCarrier, params, filterParams])
+
+    const [currentAfterSaleType, optionsAfterSaleType] = useMemo(() => {
+        let parseParamsAfterSaletype = filterParams?.after_sale_type?.split('$')
+        let optionsAfterSaleType = [{label: 'Đơn mới', value: 0},{label: 'Gửi bù hàng', value: 1}, {label: 'Đổi hàng lỗi', value: 2},{label: 'Đổi sản phẩm ', value: 3},]
+        let currentAfterSaleType = optionsAfterSaleType?.filter(_option => parseParamsAfterSaletype?.some(param => param == _option?.value));
+        return [currentAfterSaleType, optionsAfterSaleType]
+    }, [params, filterParams])
+
+    const [currentPayments, optionsPayments] = useMemo(() => {
+        let parseParamsPayments = filterParams?.payments?.split(',')
+        let optionsPayments = coGetPaymentMethod?.coGetPaymentMethodFromListPackage?.data?.map(_payment => {
+            return { label: _payment.payment_method, value: _payment.payment_method }
+        })
+        let currentPayments = optionsPayments?.filter(
+            _option => parseParamsPayments?.some(param => param == _option?.value)
+        );
+        return [currentPayments, optionsPayments]
+    }, [coGetPaymentMethod, params, filterParams])
+  
+    const onResetFilterParams = useCallback(() => {
+         setFilterParams({})
+    }, []);
+
+    const onUpdateFilterParams = useCallback((key, value) => {
+        setFilterParams(prevParams => ({
+            ...prevParams,
+            [key]: value
+        }))
+    }, []);
+
+    const onRemoveFilterProducts = useCallback(() => {
+        onResetFilterParams();
+    }, []);
+
+    const onConfirmFilterProducts = useCallback(() => {
+            let filtered = {
+                ..._.omit(params, ['stores', 'shipping_unit', 'payments', 'type_parcel', 'print_status', 'after_sale_type', 'deadline_status', 'order_type']),
+                ...filterParams,
+                page: 1
+            };
+
+            for (const key in filtered) {
+                if (filtered[key] === undefined) delete filtered[key]
+            };
+
+            history.push(`${location.pathname}?${queryString.stringify({
+                ...filtered
+            })}`.replaceAll('%2C', '\,'));
+            onResetFilterParams();
+            onToggleDrawer();
+        }, [filterParams]);
+
+    const currentPrintStatus = useMemo(() => {
+            let parsePrintStatus = filterParams?.print_status?.split(',');
+            let _current = OPTIONS_PRINT_STATUS?.filter(
+                _option => parsePrintStatus?.some(param => param == _option?.value)
+            );
+
+            return _current || []
+        }, [filterParams]);
+
+    const currentOrderType = useMemo(
+        () => {
+            let orderType = filterParams?.order_type;
+            let _current = OPTIONS_ORDER?.filter(
+                _option => orderType == _option?.value
+            );
+
+            return _current || []
+        }, [filterParams]
+    );
+
+    const currentFilterMapSme = useMemo(() => {
+        let _current = OPTIONS_MAP_SME?.find(_option => filterParams?.filter_map_sme == _option?.value);
+
+        return _current || []
+    }, [filterParams]);
+
+    const currentDeadlineStatus = useMemo(() => {
+        let _current = OPTIONS_PROCESSING_DEADLINE?.find(_option => filterParams?.deadline_status == _option?.value);
+
+        return _current || []
+    }, [filterParams]);
+
+    const currentSessionPick = useMemo(() => {
+        let _current = OPTIONS_SESSION_PICKUP?.find(_option => filterParams?.in_session_pickup == _option?.value);
+
+        return _current || []
+    }, [filterParams]);
+    
+
+
+    return (
+        <div className="drawer-filter-wrapper d-flex flex-column justify-content-between">
+            <div className="d-flex flex-column">
+                <div className="drawer-filter-header d-flex align-items-center">
+                    <div className="d-flex align-items-center justify-content-between px-4 flex-grow-1">
+                        <p className="drawer-filter-title font-weight-bold mb-0">{formatMessage({ defaultMessage: 'Lọc đơn hàng nâng cao' })}</p>
+                        <span onClick={onToggleDrawer}><i className="drawer-filter-icon fas fa-times icon-md ml-6"></i></span>
+                    </div>
+                </div>
+
+                <div style={{ overflow: 'scroll', overflowX: 'hidden', height: '84vh' }}>
+                    <div className="drawer-filter-item p-4">
+                        <p className="mb-2 font-weight-bold">{formatMessage({ defaultMessage: 'Đơn vị vận chuyển' })}</p>
+                        <Select
+                            placeholder={formatMessage({ defaultMessage: "Tất cả" })}
+                            isMulti
+                            isClearable
+                            value={currentShippingUnit}
+                            options={optionsShippingUnit}
+                            onChange={values => {
+                                let paramShippingUnit = values?.length > 0
+                                    ? _.map(values, 'value')?.join('$')
+                                    : undefined;
+                                onUpdateFilterParams('shipping_unit', paramShippingUnit);
+                            }}
+                        />
+                    </div>
+
+                    <div className="drawer-filter-item p-4">
+                        <p className="mb-2 font-weight-bold">{formatMessage({ defaultMessage: "Hình thức thanh toán" })}</p>
+                        <Select
+                            placeholder={formatMessage({ defaultMessage: "Tất cả" })}
+                            isMulti
+                            isClearable
+                            value={currentPayments}
+                            onChange={values => {
+                                let paramsPayments = values?.length > 0
+                                    ? _.map(values, 'value')?.join(',')
+                                    : undefined;
+
+                                onUpdateFilterParams('payments', paramsPayments);
+                            }}
+                            options={optionsPayments}
+                        />
+                    </div>
+
+                    <div className="drawer-filter-item p-4">
+                        <p className="mb-4 font-weight-bold">{formatMessage({ defaultMessage: "Loại kiện hàng" })}</p>
+                        <div
+                            className="radio-list"
+                        >
+                            {OPTIONS_TYPE_PARCEL?.map(_option => {
+                                let parsePrintStatus = filterParams?.type_parcel?.split(',') ?? [];
+                                return (
+                                    <div className="mb-2">
+                                        <Checkbox
+                                            inputProps={{
+                                                'aria-label': 'checkbox'
+                                            }}
+                                            title={_option.label}
+                                            isSelected={parsePrintStatus?.find(element => element == _option.value) ? true : false}
+                                            onChange={(e) => {
+                                                if (parsePrintStatus?.find(element => element == _option.value)) {
+                                                    onUpdateFilterParams('type_parcel', parsePrintStatus.filter(_value => _value != _option.value).join())
+                                                } else {
+                                                    onUpdateFilterParams('type_parcel', parsePrintStatus.concat([_option.value]).join())
+                                                }
+                                            }}
+                                        />
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+
+
+                    <div className="drawer-filter-item p-4">
+                        <p className="mb-2 font-weight-bold">{formatMessage({ defaultMessage: "Trạng thái in" })}</p>
+                        <Select
+                            placeholder={formatMessage({ defaultMessage: 'Tất cả' })}
+                            isClearable
+                            isMulti
+                            value={currentPrintStatus}
+                            onChange={values => {
+                                let paramsPrintStatus = values?.length > 0
+                                    ? _.map(values, 'value')?.join(',')
+                                    : undefined;
+
+                                onUpdateFilterParams('print_status', paramsPrintStatus);
+                            }}
+                            formatOptionLabel={(option, labelMeta) => {
+                                return <div> {option.label}</div>
+                            }}
+                            options={OPTIONS_PRINT_STATUS}
+                        />
+                    </div>
+
+                    {params?.list_source != 'manual' && <div className="drawer-filter-item p-4">
+                        <p className="mb-2 font-weight-bold">{formatMessage({ defaultMessage: "Trạng thái liên kết hàng hoá kho" })}</p>
+                        <Select
+                            placeholder={formatMessage({ defaultMessage: 'Tất cả' })}
+                            isClearable
+                            value={currentFilterMapSme}
+                            onChange={value => {
+                                onUpdateFilterParams('filter_map_sme', value?.value || undefined);
+                            }}
+                            formatOptionLabel={(option, labelMeta) => {
+                                return <div> {option.label}</div>
+                            }}
+                            options={OPTIONS_MAP_SME}
+                        />
+                    </div>}
+                    
+                    <div className="drawer-filter-item p-4">
+                        <p className="mb-2 font-weight-bold">{formatMessage({ defaultMessage: 'Lý do' })}</p>
+                        <Select
+                            placeholder={formatMessage({ defaultMessage: "Tất cả" })}
+                            isMulti
+                            isClearable
+                            value={currentAfterSaleType}
+                            options={optionsAfterSaleType}
+                            onChange={values => {
+                                let paramAfterSaleType = values?.length > 0
+                                    ? _.map(values, 'value')?.join('$')
+                                    : undefined;
+                                onUpdateFilterParams('after_sale_type', paramAfterSaleType);
+                            }}
+                        />
+                    </div>
+
+                    <div className="drawer-filter-item p-4">
+                        <p className="mb-2 font-weight-bold">{formatMessage({ defaultMessage: "Xử lý theo danh sách" })}</p>
+                        <Select
+                            placeholder={formatMessage({ defaultMessage: 'Chọn' })}
+                            isClearable
+                            value={currentSessionPick}
+                            onChange={value => {
+                                onUpdateFilterParams('in_session_pickup', value?.value || undefined);
+                            }}
+                            formatOptionLabel={(option, labelMeta) => {
+                                return <div> {option.label}</div>
+                            }}
+                            options={OPTIONS_SESSION_PICKUP}
+                        />
+                    </div>
+                    <div className="drawer-filter-item p-4">
+                        <p className="mb-2 font-weight-bold">{formatMessage({ defaultMessage: "Hạn xử lý" })}</p>
+                        <Select
+                            placeholder={formatMessage({ defaultMessage: 'Chọn' })}
+                            isClearable
+                            value={currentDeadlineStatus}
+                            onChange={value => {
+                                onUpdateFilterParams('deadline_status', value?.value || undefined);
+                            }}
+                            formatOptionLabel={(option, labelMeta) => {
+                                return <div> {option.label}</div>
+                            }}
+                            options={OPTIONS_PROCESSING_DEADLINE}
+                        />
+                    </div>
+                    {params?.list_source != 'manual' && <div className="drawer-filter-item p-4">
+                        <p className="mb-2 font-weight-bold">{formatMessage({ defaultMessage: "Loại đơn hàng" })}</p>                        
+                        <Select
+                            placeholder={formatMessage({ defaultMessage: 'Tất cả' })}
+                            value={currentOrderType}
+                            onChange={values => {
+                                onUpdateFilterParams('order_type', values?.value);
+                            }}
+                            formatOptionLabel={(option, labelMeta) => {
+                                return <div>{option.label}</div>
+                            }}
+                            options={OPTIONS_ORDER}
+                        />
+                    </div>}
+                </div>
+            </div>
+
+            <div className="form-group my-6 mx-4 d-flex justify-content-between">
+                <button
+                    className="btn btn-light btn-elevate mr-6"
+                    style={{ width: '47%' }}
+                    onClick={onRemoveFilterProducts}
+                >
+                    <span className="font-weight-boldest">{formatMessage({ defaultMessage: 'Xoá bộ lọc' })}</span>
+                </button>
+                <button
+                    className={`btn btn-primary font-weight-bold`}
+                    style={{ width: '47%' }}
+                    onClick={onConfirmFilterProducts}
+                >
+                    <span className="font-weight-boldest">{formatMessage({ defaultMessage: 'Lọc' })}</span>
+                </button>
+            </div>
+        </div>
+    )
+};
+
+export default memo(OrderFilterDrawer);

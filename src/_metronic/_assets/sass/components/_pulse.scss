@@ -1,0 +1,136 @@
+//
+// Pulse
+//
+
+// Base
+.pulse {
+    position: relative;
+
+    .pulse-ring {
+        display: block;
+        border-radius: 40px;
+        height: 40px;
+        width: 40px;
+        position: absolute;
+        animation: animation-pulse 3.5s ease-out;
+        animation-iteration-count: infinite;
+        opacity: 0;
+        border-width: 3px;
+        border-style: solid;
+        border-color: $gray-300;
+
+        @include for-ie11 {
+            top: 2px;
+            left: 2px;
+        }
+    }
+
+    // Theme Colors
+    @each $name, $color in $theme-colors {
+        &.pulse-#{$name} {
+            .pulse-ring {
+                border-color: rgba($color, 0.75);
+            }
+        }
+    }
+}
+
+@keyframes animation-pulse {
+    0% {
+        -webkit-transform: scale(0.1, 0.1);
+        opacity: 0;
+    }
+    60% {
+        -webkit-transform: scale(0.1, 0.1);
+        opacity: 0;
+    }
+    65% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(1.2, 1.2);
+        opacity: 0;
+    }
+}
+
+.pulse-ring-notification {
+    width: 15px;
+    height: 15px;
+    background: red;
+    position: absolute;
+    left: 15px;
+    top: -5px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.notification-wrapper {    
+    position: absolute;
+    background-color: #fff;
+    top: 55px;
+    left: -100px;
+    box-shadow: 0px 5px 10px #00000014;
+    border-radius: 6px;
+    width: 400px;
+    min-height: 100px;    
+
+    .notification-header {
+        padding: 20px 20px 0px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+
+    .notification-content {
+        max-height: 300px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+
+        .wraper {            
+            &:last-child {                
+                border-bottom: none;                
+            }
+            cursor: pointer;
+            justify-content: space-between;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ebedf3;
+        }
+        .noti-wrapper-right {
+            position: relative;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            padding-top: 3px;
+            background-color: red;
+            border-radius: 50%;
+            margin-left: 12px;
+        }
+
+        .noti-image {
+            width: 50px;
+            height: 50px;
+            margin-right: 1.2rem;
+            border-radius: 2px;
+            border: 1px solid #f3f8fa;            
+        }
+    }
+
+    .notification-block-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0px;
+        min-height: 50px;
+        margin-bottom: 20px;
+    }
+}
+
+// .topbar .topbar-item:focus > .notification-wrapper:checked {
+//     display: block;
+// }

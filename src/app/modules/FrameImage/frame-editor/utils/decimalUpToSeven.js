@@ -1,0 +1,1 @@
+export const decimalUpToSeven = (x) => Number(x.toFixed(7));

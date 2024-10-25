@@ -1,0 +1,102 @@
+@import "../../../init";
+
+.login.login-1 {
+    // Form modes
+    .login-signin,
+    .login-signup,
+    .login-forgot {
+        display: none;
+    }
+
+    &.login-signin-on {
+        .login-signup {
+            display: none;
+        }
+
+        .login-signin {
+            display: block;
+        }
+
+        .login-forgot {
+            display: none;
+            width: 480px;
+        }
+    }
+
+    &.login-signup-on {
+        .login-signup {
+            display: block;
+        }
+
+        .login-signin {
+            display: none;
+        }
+
+        .login-forgot {
+            display: none;
+        }
+    }
+
+    &.login-forgot-on {
+        .login-signup {
+            display: none;
+        }
+
+        .login-signin {
+            display: none;
+        }
+
+        .login-forgot {
+            display: block;
+        }
+    }
+    .login-form {
+        width: 380px;
+    }
+}
+
+// Desktop view
+@include media-breakpoint-up(lg) {
+    .login.login-1 {
+        .login-aside {
+            flex: 3;
+        }
+    }
+}
+
+// Tablet and Mobile mode
+@include media-breakpoint-between(lg, xl) {
+    .login.login-1 {
+        .login-aside {
+            flex: 3;
+        }
+    }
+}
+
+// Tablet mode
+@include media-breakpoint-down(md) {
+    .login.login-1 {
+        .login-aside {
+            flex: 3;
+        }
+    }
+}
+
+// Mobile mode
+@include media-breakpoint-down(sm) {
+    .login.login-1 {
+        .login-aside {
+            display: none !important;
+        }
+        .login-form {
+            width: 100%;
+            max-width: 100%;
+        }
+        &.login-signin-on {
+            .login-forgot {
+                display: none;
+                width: 100%;
+            }
+        }
+    }
+}

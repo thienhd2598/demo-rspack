@@ -1,0 +1,110 @@
+[
+  {
+    "type": "text",
+    "id": "sample-text-23",
+    "width": 250,
+    "height": 35,
+    "fontSize": 30,
+    "fontFamily": "'Open Sans', sans-serif",
+    "text": "Open Sans"
+  },
+  {
+    "type": "text",
+    "id": "sample-text-21",
+    "width": 250,
+    "height": 35,
+    "fontSize": 30,
+    "fontFamily": "SVN-Gotham",
+    "text": "SVN Gotham"
+  },
+  {
+    "type": "text",
+    "id": "sample-text-21",
+    "width": 250,
+    "height": 35,
+    "fontSize": 30,
+    "fontFamily": "Montserrat-Medium",
+    "text": "Montserrat Medium"
+  },
+  {
+    "type": "text",
+    "id": "sample-text-22",
+    "width": 250,
+    "height": 35,
+    "fontSize": 30,
+    "fontFamily": "'Dancing Script', cursive",
+    "text": "Dancing Script"
+  },
+  {
+    "type": "text",
+    "id": "sample-text-25",
+    "width": 250,
+    "height": 35,
+    "fontSize": 30,
+    "fontFamily": "ShopeeDisplay-Black",
+    "text": "Shopee Black"
+  },
+  {
+    "type": "text",
+    "id": "sample-text-25",
+    "width": 250,
+    "height": 35,
+    "fontSize": 30,
+    "fontFamily": "ShopeeDisplay-Bold",
+    "text": "Shopee Bold"
+  },
+  {
+    "type": "text",
+    "id": "sample-text-25",
+    "width": 250,
+    "height": 35,
+    "fontSize": 30,
+    "fontFamily": "ShopeeDisplay-ExtraBold",
+    "text": "Shopee ExtraBold"
+  },
+  {
+    "type": "text",
+    "id": "sample-text-26",
+    "width": 250,
+    "height": 35,
+    "fontSize": 30,
+    "fontFamily": "ShopeeDisplay-Light",
+    "text": "Shopee Light"
+  },
+  {
+    "type": "text",
+    "id": "sample-text-26",
+    "width": 250,
+    "height": 35,
+    "fontSize": 30,
+    "fontFamily": "ShopeeDisplay-Medium",
+    "text": "Shopee Medium"
+  },
+  {
+    "type": "text",
+    "id": "sample-text-26",
+    "width": 250,
+    "height": 35,
+    "fontSize": 30,
+    "fontFamily": "ShopeeDisplay-Regular",
+    "text": "Shopee Regular"
+  },
+  {
+    "type": "text",
+    "id": "sample-text-26",
+    "width": 250,
+    "height": 35,
+    "fontSize": 30,
+    "fontFamily": "SF-Pro Medium",
+    "text": "SF-Pro Medium"
+  },
+  {
+    "type": "text",
+    "id": "sample-text-26",
+    "width": 250,
+    "height": 35,
+    "fontSize": 30,
+    "fontFamily": "SF-Pro Heavy",
+    "text": "SF-Pro Heavy"
+  }
+]

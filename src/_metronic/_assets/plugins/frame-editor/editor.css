@@ -1,0 +1,155 @@
+@font-face {
+    font-family: "SVN-Gotham";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/45a22e33-e9e1-4aa0-ab8b-7abfbfa94a46.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Montserrat-BoldItalic";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/2cb2bb3a-6767-4804-9668-e2be79d2f493.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Montserrat-SemiBoldItalic";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/9c094264-8689-4500-9492-ef6a2a1f5dbf.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Montserrat-Thin";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/a32dbf31-1151-4690-b0b2-0e2c375c7f02.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Montserrat-Black";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/65d7324a-6ee7-4b7e-94ab-6025607e192b.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Montserrat-Bold";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/19bb613b-07c3-4454-b48c-8af483078bd4.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Montserrat-ExtraLightItalic";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/d75ecf67-0167-4af0-a899-cfe59b5ce3a3.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Montserrat-Medium";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/66b4de2b-6b69-4f67-933d-ea3788c8a078.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Montserrat-Regular";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/1d1aa939-82b5-4fa1-9718-2096bc10d96b.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+@font-face {
+    font-family: "ShopeeDisplay-Black";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/2a1ddc32-2e7d-4b58-9583-bf6121e9c6cf.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "ShopeeDisplay-Bold";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/245a1021-670b-4525-a834-6f96ab3ef382.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "ShopeeDisplay-ExtraBold";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/1edd7dca-835c-4734-8446-434564da103d.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "ShopeeDisplay-Light";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/406db247-3edf-46de-baed-b52586552f39.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "ShopeeDisplay-Medium";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/b7e8fdec-46e6-4e6a-89c2-33b4d70d71d2.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "ShopeeDisplay-Regular";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/39ab8395-c2d8-4b72-b9c3-b740902d5f19.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SF-Pro Medium";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/ab58ecbb-78f5-452d-a5c2-740dda3e76cf.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SF-Pro Black";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/ecd7d858-4b15-4f42-8bb2-7e8607b5a8bf.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SF-Pro Bold";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/6ba8f3e7-242a-4317-8904-47ce18a8eb4d.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SF-Pro Heavy";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/ed6a0fd0-7d64-4703-91e6-89a950ea3869.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SF-Pro Regular";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/069c6629-27b1-487e-9994-c9190c332b37.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SF-Pro Thin";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/db89cd9e-bcaa-420e-ab7c-b1d12a86d22c.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SF-Pro Ultralight";
+    src: url("https://upbase-statics.s3.ap-southeast-1.amazonaws.com/file/29daf743-0640-40fe-9b4d-bc3c9a2a2207.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}

@@ -1,0 +1,80 @@
+//
+// To make future updates easier consider overriding the global variables from _variables.bootstrap.scss and _variables.custom.scss for current demo in this file.
+// Note that this file is included first and variables defined in _variables.bootstrap.scss and _variables.custom.scss
+// are not accessible in this file but you can override any global variable as shown below:
+//
+
+$font-family-base: "Roboto" !default;
+
+$bg-textbox: #eef1f5;
+$border-color: #c9c9c9;
+
+$white: #ffffff;
+// Gray colors
+$gray-100: #f3f6f9;
+$gray-200: #ebedf3;
+$gray-300: #e4e6ef;
+$gray-400: #d1d3e0;
+$gray-500: #9e9999;
+$gray-600: #7e8299;
+$gray-700: #5e6278;
+$gray-800: #000000;
+$gray-900: #000000;
+
+.cropper-container {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.width-fit-content {
+    width: fit-content;
+}
+
+.bg-blur {
+    background-color: #56565699;
+}
+.cus-border {
+    border: 1px solid #c9c9c9;
+}
+.editorClassName {
+    border: 1px solid #f1f1f1;
+    min-height: 200px;
+    max-height: 400px;
+    border-radius: 2px;
+    padding: 12px;
+}
+
+// Primary colors
+$primary: #ff5629;
+$primary-hover: darken($primary, 4%);
+$primary-light: #e1f0ff;
+$primary-inverse: $white;
+
+// Secondary colors
+$secondary: $gray-300;
+$secondary-hover: darken($gray-300, 4%);
+$secondary-light: $gray-200;
+
+// Success colors
+$success: #52C41A;
+$success-hover: #53c41a88;
+$success-light: #5ae217;
+$success-inverse: $white;
+
+// Inco colors
+$info: #3699ff;
+$info-hover: darken($info, 4%);
+$info-light: #eee5ff;
+$info-inverse: $white;
+
+// Warning colors
+$warning: #f14336;
+$warning-hover: darken($warning, 4%);
+$warning-light: #fff4de;
+$warning-inverse: $white;
+
+// Danger colors
+$danger: #F5222D;
+$danger-hover: darken($warning, 4%);
+$danger-light: #ffe2e5;
+$danger-inverse: $white;
